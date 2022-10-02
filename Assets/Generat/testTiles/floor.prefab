@@ -100,25 +100,25 @@ MonoBehaviour:
   Weight: 50
   allowedTilesTop:
   - {fileID: 6975703824525859909}
-  - {fileID: 1488789852363794609, guid: a1579d7a8cbd44e4aa74a5161390ae37, type: 3}
+  - {fileID: 1488789852363794609, guid: bd4dbddf3885deb4e81348b6a08dde96, type: 3}
   - {fileID: 1692275949282084801, guid: cfbf0d5d7c52d094095fb01eedbdba67, type: 3}
   - {fileID: 6961236872861316913, guid: dd448b4c2d9c4014c89a0a77cb4798ba, type: 3}
   - {fileID: 6961236872861316913, guid: f3a5e0ffe6cbd444dbc352d8abcba24a, type: 3}
   allowedTilesBottom:
   - {fileID: 6975703824525859909}
   - {fileID: 1488789852363794609, guid: a1579d7a8cbd44e4aa74a5161390ae37, type: 3}
-  - {fileID: 1692275949282084801, guid: cfbf0d5d7c52d094095fb01eedbdba67, type: 3}
+  - {fileID: 1692275949282084801, guid: 5e24eec43dfc04d48851fb58e3f0ded7, type: 3}
   - {fileID: 770813308168690979, guid: 2f249a612f38f8046ae5ebc8f0a69c2d, type: 3}
   - {fileID: 770813308168690979, guid: 72d9264843cdb8f498616ffb66e3faf9, type: 3}
   allowedTilesLeft:
   - {fileID: 6975703824525859909}
-  - {fileID: 7673192409779128948, guid: 0456cd1e51d74d147a5828869d0812b5, type: 3}
-  - {fileID: 2624117185113180212, guid: db0f0711c914cc24cb7586699187afec, type: 3}
+  - {fileID: 7673192409779128948, guid: f976a5c2af34f7e4abffadaa2ab7c74d, type: 3}
+  - {fileID: 2624117185113180212, guid: f6bcd973d7d067443b3a3d93b990049a, type: 3}
   - {fileID: 770813308168690979, guid: 72d9264843cdb8f498616ffb66e3faf9, type: 3}
   - {fileID: 6961236872861316913, guid: f3a5e0ffe6cbd444dbc352d8abcba24a, type: 3}
   allowedTilesRight:
   - {fileID: 6975703824525859909}
-  - {fileID: 7673192409779128948, guid: f976a5c2af34f7e4abffadaa2ab7c74d, type: 3}
-  - {fileID: 2624117185113180212, guid: f6bcd973d7d067443b3a3d93b990049a, type: 3}
+  - {fileID: 7673192409779128948, guid: 0456cd1e51d74d147a5828869d0812b5, type: 3}
+  - {fileID: 2624117185113180212, guid: db0f0711c914cc24cb7586699187afec, type: 3}
   - {fileID: 770813308168690979, guid: 2f249a612f38f8046ae5ebc8f0a69c2d, type: 3}
   - {fileID: 6961236872861316913, guid: dd448b4c2d9c4014c89a0a77cb4798ba, type: 3}

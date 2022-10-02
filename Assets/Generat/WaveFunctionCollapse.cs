@@ -19,59 +19,6 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         spawnedTiles = new Tile[MapSize.x, MapSize.y];
 
-        /*
-        foreach (Tile tilePrefab in TilePrefabs)
-        {
-            tilePrefab.CalculateSidesColors();
-        }
-
-        int countBeforeAdding = TilePrefabs.Count;
-        for (int i = 0; i < countBeforeAdding; i++)
-        {
-            Tile clone;
-            switch (TilePrefabs[i].Rotation)
-            {
-                case Tile.RotationType.OnlyRotation:
-                    break;
-
-                case Tile.RotationType.TwoRotations:
-                    TilePrefabs[i].Weight /= 2;
-                    if (TilePrefabs[i].Weight <= 0) TilePrefabs[i].Weight = 1;
-
-                    clone = Instantiate(TilePrefabs[i], TilePrefabs[i].transform.position + Vector3.right,
-                        Quaternion.identity);
-                    clone.Rotate90();
-                    TilePrefabs.Add(clone);
-                    break;
-
-                case Tile.RotationType.FourRotations:
-                    TilePrefabs[i].Weight /= 4;
-                    if (TilePrefabs[i].Weight <= 0) TilePrefabs[i].Weight = 1;
-
-                    clone = Instantiate(TilePrefabs[i], TilePrefabs[i].transform.position + Vector3.right,
-                        Quaternion.identity);
-                    clone.Rotate90();
-                    TilePrefabs.Add(clone);
-
-                    clone = Instantiate(TilePrefabs[i], TilePrefabs[i].transform.position + Vector3.right * 2,
-                        Quaternion.identity);
-                    clone.Rotate90();
-                    clone.Rotate90();
-                    TilePrefabs.Add(clone);
-
-                    clone = Instantiate(TilePrefabs[i], TilePrefabs[i].transform.position + Vector3.right * 3,
-                        Quaternion.identity);
-                    clone.Rotate90();
-                    clone.Rotate90();
-                    clone.Rotate90();
-                    TilePrefabs.Add(clone);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-        */
-
         Generate();
     }
 
@@ -189,19 +136,19 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     private bool IsTilePossible(Tile tile, Vector2Int position)
     {
-        bool isAllRightImpossible = possibleTiles[position.x - 1, position.y]
+        bool isAllRightImpossible = possibleTiles[position.x + 1, position.y]
             .All(rightTile => !CanAppendTile(tile, rightTile, Direction.Right));
         if (isAllRightImpossible) return false;
 
-        bool isAllLeftImpossible = possibleTiles[position.x + 1, position.y]
+        bool isAllLeftImpossible = possibleTiles[position.x - 1, position.y]
             .All(leftTile => !CanAppendTile(tile, leftTile, Direction.Left));
         if (isAllLeftImpossible) return false;
 
-        bool isAllForwardImpossible = possibleTiles[position.x, position.y - 1]
+        bool isAllForwardImpossible = possibleTiles[position.x, position.y + 1]
             .All(upTile => !CanAppendTile(tile, upTile, Direction.Up));
         if (isAllForwardImpossible) return false;
 
-        bool isAllBackImpossible = possibleTiles[position.x, position.y + 1]
+        bool isAllBackImpossible = possibleTiles[position.x, position.y - 1]
             .All(downTile => !CanAppendTile(tile, downTile, Direction.Down));
         if (isAllBackImpossible) return false;
 
@@ -263,19 +210,19 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         if (direction == Direction.Right)
         {
-            return Enumerable.SequenceEqual(existingTile.allowedTilesRight, tileToAppend.allowedTilesLeft);
+            return tileToAppend.allowedTilesLeft.Any(x => existingTile.gameObject == x);
         }
         else if (direction == Direction.Left)
         {
-            return Enumerable.SequenceEqual(existingTile.allowedTilesLeft, tileToAppend.allowedTilesRight);
+            return tileToAppend.allowedTilesRight.Any(x => existingTile.gameObject == x);
         }
         else if (direction == Direction.Up)
         {
-            return Enumerable.SequenceEqual(existingTile.allowedTilesTop, tileToAppend.allowedTilesBottom);
+            return tileToAppend.allowedTilesBottom.Any(x => existingTile.gameObject == x);
         }
         else if (direction == Direction.Down)
         {
-            return Enumerable.SequenceEqual(existingTile.allowedTilesBottom, tileToAppend.allowedTilesTop);
+            return tileToAppend.allowedTilesTop.Any(x => existingTile.gameObject == x);
         }
         else
         {
