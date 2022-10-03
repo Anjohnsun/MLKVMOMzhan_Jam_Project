@@ -70,7 +70,7 @@ public class ControlSystem : MonoBehaviour
                 }
             }
 
-            _scientist.ScientistSpriteRenderer.sortingOrder = Mathf.RoundToInt(_movingBody.position.y * 4);
+            //_scientist.ScientistSpriteRenderer.sortingOrder = Mathf.RoundToInt(_movingBody.position.y * 4);
         }
     }
 
