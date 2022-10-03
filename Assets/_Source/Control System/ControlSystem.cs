@@ -140,5 +140,8 @@ public class ControlSystem : MonoBehaviour
 
         TaskManager.AliveScientistsAmount = _playableScientists.Count;
         _taskManager.RefreshPresentation();
+
+
+        GameObject.FindGameObjectsWithTag();
     }
 }

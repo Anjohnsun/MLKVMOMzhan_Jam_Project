@@ -25,13 +25,6 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
-    public void CreateButton(Vector2 position)
-    {
-        _buttons.Add((Instantiate(_buttonPrefab, position, new Quaternion())).GetComponent<Button>());
-        _buttons[_buttons.Count - 1].ButtonPressed.AddListener(ButtonPressed);
-        _buttons[_buttons.Count - 1].ButtonUnpressed.AddListener(ButtonUnpressed);
-    }
-
     private void ButtonPressed()
     {
         _pressedButonNumber++;
