@@ -22,8 +22,8 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         Generate();
     }
-
-    private void Update()
+    
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -34,7 +34,7 @@ public class WaveFunctionCollapse : MonoBehaviour
 
             Generate();
         }
-    }
+    }*/
 
     private void Generate()
     {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3456070698287767612}
   - component: {fileID: -1849056005808463040}
   - component: {fileID: 6299455995287196775}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: borderHoriUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

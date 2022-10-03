@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7177191781012420723}
   - component: {fileID: 4221141268183161084}
   - component: {fileID: 8326511969389216118}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cornerUpRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8707944346398620905}
   - component: {fileID: 5676214741921515657}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tile_wall_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
