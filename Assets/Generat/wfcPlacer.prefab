@@ -62,3 +62,10 @@ MonoBehaviour:
   - {fileID: -8414147097804081780, guid: 3a83fb4af72240e4e8fc1484b92b83f1, type: 3}
   - {fileID: 1528892866530542380, guid: 06932b9a3272c8942a43207f3077ceec, type: 3}
   - {fileID: -1849056005808463040, guid: f3f9611313cb4c043a43fbbf313e6b02, type: 3}
+  Prefabs:
+  - {fileID: 4632764536615050969, guid: 13a59d55e06403f4abeaa713ce2dae45, type: 3}
+  - {fileID: 415346188300539260, guid: e49a8ddaa12eb6a4699a7f3ffe83c071, type: 3}
+  - {fileID: 7736315154528698570, guid: da0174b7ef484da4e82bc1a0881ce412, type: 3}
+  ButtonChancesMax: {x: 5, y: 6}
+  AntidoteChancesMax: {x: 50, y: 60}
+  ScientistChancesMax: {x: 10, y: 16}
