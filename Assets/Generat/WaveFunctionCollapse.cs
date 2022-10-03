@@ -54,11 +54,29 @@ public class WaveFunctionCollapse : MonoBehaviour
 
             for (int i = 0; i < MapSize.y - 1; i++)
             {
+                if (i == MapSize.y / 2)
+                {
+                    possibleTiles[0, i] = new List<Tile> { TilePrefabs[19] };
+                    possibleTiles[MapSize.x - 1, i] = new List<Tile> { TilePrefabs[19] };
+                    continue;
+                }
                 possibleTiles[0, i] = new List<Tile> { TilePrefabs[14] };
                 possibleTiles[MapSize.x - 1, i] = new List<Tile> { TilePrefabs[14] };
             }
             for (int i = 1; i < MapSize.x - 2; i++)
             {
+                /*if (1 == GameObject.FindGameObjectsWithTag("mapCell").Length && i == MapSize.y / 2)
+                {
+                    possibleTiles[i, 0] = new List<Tile> { TilePrefabs[15] };
+                    possibleTiles[i, MapSize.y - 1] = new List<Tile> { TilePrefabs[17] };
+                    continue;
+                }
+                else if (6 == GameObject.FindGameObjectsWithTag("mapCell").Length && i == MapSize.y / 2)
+                {
+                    possibleTiles[i, 0] = new List<Tile> { TilePrefabs[18] };
+                    possibleTiles[i, MapSize.y - 1] = new List<Tile> { TilePrefabs[16] };
+                    continue;
+                }*/
                 possibleTiles[i, 0] = new List<Tile> { TilePrefabs[15] };
                 possibleTiles[i, MapSize.y - 1] = new List<Tile> { TilePrefabs[16] };
             }
