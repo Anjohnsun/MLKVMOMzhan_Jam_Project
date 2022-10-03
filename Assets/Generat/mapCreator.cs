@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class mapCreator : MonoBehaviour
 {
@@ -8,9 +9,15 @@ public class mapCreator : MonoBehaviour
     public GameObject CellGen;
     public GameObject[] Borders;
 
+    public GameObject[] Prefabs;
+    public int ButtonMax;
+    public int AntidoteMax;
+    public int ScientistMax;
+
     private void Start()
     {
         BeginGenerat();
+        StartCoroutine(SpawnObjects());
     }
 
     void BeginGenerat()
@@ -58,8 +65,8 @@ public class mapCreator : MonoBehaviour
             posB2 = new Vector2(fixedPosX * 2 - .5f, fixedPosY + 1.5f + i);
             if ((MapSize.y / 3 - 2) / 2 == i)
             {
-                // Instantiate(Borders[5], gameObject.transform.position + posB1, gameObject.transform.rotation, gameObject.transform);
-                // Instantiate(Borders[6], gameObject.transform.position + posB2, gameObject.transform.rotation, gameObject.transform);
+                Instantiate(Borders[5], gameObject.transform.position + posB1, gameObject.transform.rotation, gameObject.transform);
+                Instantiate(Borders[5], gameObject.transform.position + posB2, gameObject.transform.rotation, gameObject.transform);
             }
             Instantiate(Borders[0], gameObject.transform.position + posB1, gameObject.transform.rotation, gameObject.transform);
             Instantiate(Borders[0], gameObject.transform.position + posB2, gameObject.transform.rotation, gameObject.transform);
@@ -71,11 +78,40 @@ public class mapCreator : MonoBehaviour
             if ((MapSize.x / 3 - 2) / 2 == i)
             {
                 Instantiate(Borders[3], gameObject.transform.position + posB1, gameObject.transform.rotation, gameObject.transform);
-                // Instantiate(Borders[4], gameObject.transform.position + posB2, gameObject.transform.rotation, gameObject.transform);
+                Instantiate(Borders[4], gameObject.transform.position + posB2, gameObject.transform.rotation, gameObject.transform);
                 continue;
             }
             Instantiate(Borders[1], gameObject.transform.position + posB1, gameObject.transform.rotation, gameObject.transform);
             Instantiate(Borders[2], gameObject.transform.position + posB2, gameObject.transform.rotation, gameObject.transform);
         }
+    }
+
+    IEnumerator SpawnObjects()
+    {
+        yield return new WaitForEndOfFrame();
+
+        List<GameObject> floorsW = GameObject.FindGameObjectsWithTag("floorW").ToList();
+        List<GameObject> floorsB = GameObject.FindGameObjectsWithTag("floorB").ToList();
+
+        int selectedNum;
+        for (int i = 0; i < ButtonMax; i++)
+        {
+            selectedNum = Random.Range(0, floorsB.Count - 1);
+            Instantiate(Prefabs[0], floorsB[selectedNum].transform.position, new Quaternion()); floorsB.RemoveAt(selectedNum);
+        }
+        for (int i = 0; i < AntidoteMax; i++)
+        {
+            selectedNum = Random.Range(0, floorsB.Count - 1);
+            Instantiate(Prefabs[1], floorsB[selectedNum].transform.position, new Quaternion()); floorsB.RemoveAt(selectedNum);
+        }
+        for (int i = 0; i < ScientistMax; i++)
+        {
+            selectedNum = Random.Range(0, floorsW.Count - 1);
+            Instantiate(Prefabs[2], floorsW[selectedNum].transform.position, new Quaternion()); floorsW.RemoveAt(selectedNum);
+        }
+
+        Debug.Log("Antidote - " + (GameObject.FindGameObjectsWithTag("antidote").Length + 1));
+        Debug.Log("Button - " + (GameObject.FindGameObjectsWithTag("button").Length + 1));
+        Debug.Log("ControlledScientist - " + (GameObject.FindGameObjectsWithTag("ControlledScientist").Length + 1));
     }
 }
