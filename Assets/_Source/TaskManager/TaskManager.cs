@@ -13,6 +13,7 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _aliveScientistsText;
     [SerializeField] private TextMeshProUGUI _pressedButtonsText;
     [SerializeField] private TextMeshProUGUI _enemaFullnessText;
+    [SerializeField] private GameObject _winPanel;
 
     public static int AliveScientistsAmount { get => _aliveScientistsAmount; set => _aliveScientistsAmount = value; }
     public static int PressedButtonAmount { get => _pressedButtonAmount; set => _pressedButtonAmount = value; }
@@ -24,5 +25,10 @@ public class TaskManager : MonoBehaviour
         _aliveScientistsText.text = "Живы ещё " + _aliveScientistsAmount;
         _pressedButtonsText.text = "Нажато " + _pressedButtonAmount + "/" + _requiredPressedButtonAmount;
         _enemaFullnessText.text = "Машина заполнена на " + Mathf.RoundToInt(_resqueEnemaFullness);
+
+        if (_resqueEnemaFullness >= 1 && _requiredPressedButtonAmount == _pressedButtonAmount)
+        {
+            _winPanel.SetActive(true);
+        }
     }
 }

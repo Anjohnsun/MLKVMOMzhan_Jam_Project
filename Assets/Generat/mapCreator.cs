@@ -14,6 +14,8 @@ public class mapCreator : MonoBehaviour
     public int AntidoteMax;
     public int ScientistMax;
 
+    [SerializeField] ControlSystem _controlSystem;
+
     private void Start()
     {
         BeginGenerat();
@@ -113,5 +115,7 @@ public class mapCreator : MonoBehaviour
         Debug.Log("Antidote - " + (GameObject.FindGameObjectsWithTag("antidote").Length + 1));
         Debug.Log("Button - " + (GameObject.FindGameObjectsWithTag("button").Length + 1));
         Debug.Log("ControlledScientist - " + (GameObject.FindGameObjectsWithTag("ControlledScientist").Length + 1));
+
+        _controlSystem.RegistrateScientists();
     }
 }

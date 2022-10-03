@@ -29,11 +29,13 @@ public class ButtonManager : MonoBehaviour
     {
         _pressedButonNumber++;
         TaskManager.PressedButtonAmount++;
+        _taskManager.RefreshPresentation();
         
     }
     private void ButtonUnpressed()
     {
         _pressedButonNumber--;
         TaskManager.PressedButtonAmount--;
+        _taskManager.RefreshPresentation();
     }
 }

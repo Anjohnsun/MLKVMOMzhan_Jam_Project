@@ -17,8 +17,15 @@ public class ControlSystem : MonoBehaviour
 
     [SerializeField] private TaskManager _taskManager;
 
-    private void Start()
+    public void RegistrateScientists()
     {
+        GameObject[] scientists = GameObject.FindGameObjectsWithTag("ControlledScientist");
+        Debug.LogWarning(scientists.Length);
+        _playableScientists.Clear();
+        foreach (GameObject gm in scientists)
+        {
+            _playableScientists.Add(gm.GetComponent<Scientist>());
+        }
         foreach (Scientist scientist in _playableScientists)
         {
             scientist.ScientistInfected.AddListener(MakeScientistUnavailable);
@@ -79,6 +86,7 @@ public class ControlSystem : MonoBehaviour
         if (_scientist.RescueEnema != null && _scientist.AntidoteAmount > 0)
         {
             _scientist.FillRescueEnema();
+            _taskManager.RefreshPresentation();
         }
         else
         {
@@ -140,8 +148,5 @@ public class ControlSystem : MonoBehaviour
 
         TaskManager.AliveScientistsAmount = _playableScientists.Count;
         _taskManager.RefreshPresentation();
-
-
-        GameObject.FindGameObjectsWithTag();
     }
 }

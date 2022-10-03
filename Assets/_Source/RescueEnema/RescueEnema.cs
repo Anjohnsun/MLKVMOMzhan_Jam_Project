@@ -21,6 +21,7 @@ public class RescueEnema : MonoBehaviour
         if(_scientist != null)
         {
             _scientist.RescueEnema = this;
+            _textForFilling.SetActive(true);
         }
     }
 
@@ -30,6 +31,7 @@ public class RescueEnema : MonoBehaviour
         if (_scientist != null)
         {
             _scientist.RescueEnema = null;
+            _textForFilling.SetActive(false);
         }
     }
 
