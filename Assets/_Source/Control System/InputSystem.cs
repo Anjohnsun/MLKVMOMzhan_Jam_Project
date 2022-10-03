@@ -19,5 +19,13 @@ public class InputSystem : MonoBehaviour
         {
             _controlSystem.ChangePlayableBody();
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            _controlSystem.MakeInteraction();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            _controlSystem.InteractWithButton();
+        }
     }
 }

@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class CameraMoving : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField] private ControlSystem _controlSystem;
     void Update()
     {
-        
+        transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, -10), _controlSystem.MovingBody.position, 0.01f);
     }
 }
