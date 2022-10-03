@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [Range(1, 100)]
+    [Range(0, 100)]
     public int Weight = 50;
 
     public GameObject[] allowedTilesTop;

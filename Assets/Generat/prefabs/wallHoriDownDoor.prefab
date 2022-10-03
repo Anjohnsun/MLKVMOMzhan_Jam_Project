@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6687236818465971469}
   - component: {fileID: 4898205010829666160}
   - component: {fileID: 2480122596007937572}
+  - component: {fileID: 4567078276152430662}
+  - component: {fileID: 5763793438445109660}
   m_Layer: 0
   m_Name: wallHoriDownDoor
   m_TagString: Untagged
@@ -108,3 +110,55 @@ MonoBehaviour:
   allowedTilesRight:
   - {fileID: 1488789852363794609, guid: bd4dbddf3885deb4e81348b6a08dde96, type: 3}
   - {fileID: 6961236872861316913, guid: f3a5e0ffe6cbd444dbc352d8abcba24a, type: 3}
+--- !u!61 &4567078276152430662
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692275949282084801}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.3729142, y: -0.18767577}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2541716, y: 0.62464845}
+  m_EdgeRadius: 0
+--- !u!61 &5763793438445109660
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692275949282084801}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.3680395, y: -0.18767577}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.26392102, y: 0.62464845}
+  m_EdgeRadius: 0

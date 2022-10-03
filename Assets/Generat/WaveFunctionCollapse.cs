@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class WaveFunctionCollapse : MonoBehaviour
 {
     public List<Tile> TilePrefabs;
-    public Vector2Int MapSize = new Vector2Int(10, 10);
+    Vector2Int MapSize;
 
     private Tile[,] spawnedTiles;
 
@@ -17,6 +17,7 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     private void Start()
     {
+        MapSize = gameObject.GetComponentInParent<mapCreator>().MapSize / 3;
         spawnedTiles = new Tile[MapSize.x, MapSize.y];
 
         Generate();
@@ -49,8 +50,18 @@ public class WaveFunctionCollapse : MonoBehaviour
                     possibleTiles[x, y] = new List<Tile>(TilePrefabs);
                 }
 
-            Tile tileInCenter = TilePrefabs[0];
-            possibleTiles[MapSize.x / 2, MapSize.y / 2] = new List<Tile> { tileInCenter };
+            possibleTiles[MapSize.x / 2, MapSize.y / 2] = new List<Tile> { TilePrefabs[0] };
+
+            for (int i = 0; i < MapSize.y - 1; i++)
+            {
+                possibleTiles[0, i] = new List<Tile> { TilePrefabs[14] };
+                possibleTiles[MapSize.x - 1, i] = new List<Tile> { TilePrefabs[14] };
+            }
+            for (int i = 1; i < MapSize.x - 2; i++)
+            {
+                possibleTiles[i, 0] = new List<Tile> { TilePrefabs[15] };
+                possibleTiles[i, MapSize.y - 1] = new List<Tile> { TilePrefabs[16] };
+            }
 
             recalcPossibleTilesQueue.Clear();
             EnqueueNeighboursToRecalc(new Vector2Int(MapSize.x / 2, MapSize.y / 2));
@@ -91,8 +102,7 @@ public class WaveFunctionCollapse : MonoBehaviour
 
                 if (possibleTilesHere.Count == 0)
                 {
-                    // Зашли в тупик, в этих координатах невозможен ни один тайл. Попробуем ещё раз, разрешим все тайлы
-                    // в этих и соседних координатах, и посмотрим устаканится ли всё
+                    // Trying again
                     possibleTilesHere.AddRange(TilePrefabs);
                     possibleTiles[position.x + 1, position.y] = new List<Tile>(TilePrefabs);
                     possibleTiles[position.x - 1, position.y] = new List<Tile>(TilePrefabs);
@@ -177,8 +187,8 @@ public class WaveFunctionCollapse : MonoBehaviour
         if (possibleTiles[x, y].Count == 0) return;
 
         Tile selectedTile = GetRandomTile(possibleTiles[x, y]);
-        Vector3 position = new Vector3(x, y, 0);
-        spawnedTiles[x, y] = Instantiate(selectedTile, position, selectedTile.transform.rotation);
+        Vector3 position = new Vector3(x - .5f, y - .5f, 0);
+        spawnedTiles[x, y] = Instantiate(selectedTile, gameObject.GetComponentInParent<Transform>().position + position, selectedTile.transform.rotation, gameObject.transform);
     }
 
     private Tile GetRandomTile(List<Tile> availableTiles)
@@ -207,7 +217,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     private bool CanAppendTile(Tile existingTile, Tile tileToAppend, Direction direction)
     {
         if (existingTile == null) return true;
-
+        
         if (direction == Direction.Right)
         {
             return tileToAppend.allowedTilesLeft.Any(x => existingTile.gameObject == x);
