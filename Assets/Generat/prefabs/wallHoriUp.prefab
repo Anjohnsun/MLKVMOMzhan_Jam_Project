@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 887527786692414666}
   - component: {fileID: -4028669074401300350}
   - component: {fileID: 5405827804625217887}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: wallHoriUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -8831097122227330827}
   - component: {fileID: 3917031663101792687}
   - component: {fileID: 3400891783731421951}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: wallVertRightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,6 +189,10 @@ PrefabInstance:
     - target: {fileID: 6975703824525859909, guid: d087ffad2be1e644b84becea986ecb65, type: 3}
       propertyPath: m_Name
       value: floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975703824525859909, guid: d087ffad2be1e644b84becea986ecb65, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8498961373730027839, guid: d087ffad2be1e644b84becea986ecb65, type: 3}
       propertyPath: m_RootOrder
