@@ -141,4 +141,18 @@ public class ControlSystem : MonoBehaviour
         TaskManager.AliveScientistsAmount = _playableScientists.Count;
         _taskManager.RefreshPresentation();
     }
+
+    public void RegistrateScientists()
+    {
+        GameObject[] scientists = GameObject.FindGameObjectsWithTag("ControlledScientist");
+        _playableScientists.Clear();
+        foreach (GameObject gm in scientists)
+        {
+            _playableScientists.Add(gm.GetComponent<Scientist>());
+        }
+        foreach (Scientist scientist in _playableScientists)
+        {
+            scientist.ScientistInfected.AddListener(MakeScientistUnavailable);
+        }
+    }
 }

@@ -1327,6 +1327,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6111601188949044315, guid: af959d76b43f78d4eb90894d2354a253, type: 3}
+      propertyPath: _controlSystem
+      value: 
+      objectReference: {fileID: 809795668}
+    - target: {fileID: 6111601188949044315, guid: af959d76b43f78d4eb90894d2354a253, type: 3}
       propertyPath: Borders.Array.size
       value: 6
       objectReference: {fileID: 0}
