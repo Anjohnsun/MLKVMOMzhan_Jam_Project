@@ -103,14 +103,9 @@ MonoBehaviour:
   Weight: 5
   allowedTilesTop:
   - {fileID: 6975703824525859909, guid: d087ffad2be1e644b84becea986ecb65, type: 3}
-  allowedTilesBottom:
-  - {fileID: 6975703824525859909, guid: a17bbbcff50dafe49b495284014052ee, type: 3}
-  allowedTilesLeft:
-  - {fileID: 1488789852363794609, guid: a1579d7a8cbd44e4aa74a5161390ae37, type: 3}
-  - {fileID: 770813308168690979, guid: 2f249a612f38f8046ae5ebc8f0a69c2d, type: 3}
-  allowedTilesRight:
-  - {fileID: 1488789852363794609, guid: a1579d7a8cbd44e4aa74a5161390ae37, type: 3}
-  - {fileID: 770813308168690979, guid: 72d9264843cdb8f498616ffb66e3faf9, type: 3}
+  allowedTilesBottom: []
+  allowedTilesLeft: []
+  allowedTilesRight: []
 --- !u!61 &1095642467616460783
 BoxCollider2D:
   m_ObjectHideFlags: 0

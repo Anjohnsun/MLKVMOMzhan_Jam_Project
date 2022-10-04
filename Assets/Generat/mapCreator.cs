@@ -112,10 +112,13 @@ public class mapCreator : MonoBehaviour
             Instantiate(Prefabs[2], floorsW[selectedNum].transform.position, new Quaternion()); floorsW.RemoveAt(selectedNum);
         }
 
+<<<<<<< HEAD
         Debug.Log("Antidote - " + (GameObject.FindGameObjectsWithTag("antidote").Length + 1));
         Debug.Log("Button - " + (GameObject.FindGameObjectsWithTag("button").Length + 1));
         Debug.Log("ControlledScientist - " + (GameObject.FindGameObjectsWithTag("ControlledScientist").Length + 1));
 
+=======
+>>>>>>> 70169f8ce011db1d49bf4ae56c5f56a663aa3969
         _controlSystem.RegistrateScientists();
     }
 }

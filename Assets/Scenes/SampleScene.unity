@@ -1757,7 +1757,7 @@ PrefabInstance:
     - target: {fileID: 6111601188949044315, guid: af959d76b43f78d4eb90894d2354a253, type: 3}
       propertyPath: Borders.Array.data[3]
       value: 
-      objectReference: {fileID: 1692275949282084801, guid: cfbf0d5d7c52d094095fb01eedbdba67, type: 3}
+      objectReference: {fileID: 1692275949282084801, guid: 84ec30f2d608a284e917fcf760a0e045, type: 3}
     - target: {fileID: 6111601188949044315, guid: af959d76b43f78d4eb90894d2354a253, type: 3}
       propertyPath: Borders.Array.data[4]
       value: 
