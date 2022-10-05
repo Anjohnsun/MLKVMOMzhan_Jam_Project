@@ -22,19 +22,6 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         Generate();
     }
-    
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            foreach (Tile spawnedTile in spawnedTiles)
-            {
-                if (spawnedTile != null) Destroy(spawnedTile.gameObject);
-            }
-
-            Generate();
-        }
-    }*/
 
     private void Generate()
     {
@@ -65,18 +52,7 @@ public class WaveFunctionCollapse : MonoBehaviour
             }
             for (int i = 1; i < MapSize.x - 2; i++)
             {
-                /*if (1 == GameObject.FindGameObjectsWithTag("mapCell").Length && i == MapSize.y / 2)
-                {
-                    possibleTiles[i, 0] = new List<Tile> { TilePrefabs[15] };
-                    possibleTiles[i, MapSize.y - 1] = new List<Tile> { TilePrefabs[17] };
-                    continue;
-                }
-                else if (6 == GameObject.FindGameObjectsWithTag("mapCell").Length && i == MapSize.y / 2)
-                {
-                    possibleTiles[i, 0] = new List<Tile> { TilePrefabs[18] };
-                    possibleTiles[i, MapSize.y - 1] = new List<Tile> { TilePrefabs[16] };
-                    continue;
-                }*/
+
                 possibleTiles[i, 0] = new List<Tile> { TilePrefabs[15] };
                 possibleTiles[i, MapSize.y - 1] = new List<Tile> { TilePrefabs[16] };
             }

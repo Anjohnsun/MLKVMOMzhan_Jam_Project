@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ControlSystem : MonoBehaviour
 {
     [SerializeField] private Scientist _scientist;
     [SerializeField] private Transform _movingBody;
+    [SerializeField] private TextMeshProUGUI _scientistAntidoteAmountText;
 
     [SerializeField] private float _raycastDistance;
     [SerializeField] private string _raycastlayerMask;
@@ -17,19 +19,26 @@ public class ControlSystem : MonoBehaviour
 
     [SerializeField] private TaskManager _taskManager;
 
-    private void Start()
+    public void RegistrateScientists(List<Scientist> generatedScientists)
     {
+
+        foreach (Scientist newScientist in generatedScientists)
+        {
+            _playableScientists.Add(newScientist);
+        }
         foreach (Scientist scientist in _playableScientists)
         {
             scientist.ScientistInfected.AddListener(MakeScientistUnavailable);
         }
+
+        TaskManager.AliveScientistsAmount = _playableScientists.Count;
     }
 
     public void MoveHorizontally(float vector)
     {
         if (_scientist.CanMove)
         {
-            if (vector > 0.1)
+            if (vector > 0)
             {
                 if (!Physics2D.Raycast(_movingBody.position, Vector2.right, _raycastDistance, LayerMask.GetMask(_raycastlayerMask)))
                 {
@@ -37,7 +46,7 @@ public class ControlSystem : MonoBehaviour
                         _movingBody.position.y);
                 }
             }
-            else if (vector < -0.1)
+            else if (vector < 0)
             {
                 if (!Physics2D.Raycast(_movingBody.position, Vector2.left, _raycastDistance, LayerMask.GetMask(_raycastlayerMask)))
                 {
@@ -52,7 +61,7 @@ public class ControlSystem : MonoBehaviour
     {
         if (_scientist.CanMove)
         {
-            if (vector > 0.1)
+            if (vector > 0)
             {
                 if (!Physics2D.Raycast(MovingBody.position, Vector2.up, _raycastDistance, LayerMask.GetMask(_raycastlayerMask)))
                 {
@@ -61,7 +70,7 @@ public class ControlSystem : MonoBehaviour
                 }
             }
 
-            else if (vector < -0.1)
+            else if (vector < 0)
             {
                 if (!Physics2D.Raycast(MovingBody.position, Vector2.down, _raycastDistance, LayerMask.GetMask(_raycastlayerMask)))
                 {
@@ -69,8 +78,6 @@ public class ControlSystem : MonoBehaviour
                         _movingBody.position.y + vector * _scientist.Speed);
                 }
             }
-
-            //_scientist.ScientistSpriteRenderer.sortingOrder = Mathf.RoundToInt(_movingBody.position.y * 4);
         }
     }
 
@@ -79,15 +86,16 @@ public class ControlSystem : MonoBehaviour
         if (_scientist.RescueEnema != null && _scientist.AntidoteAmount > 0)
         {
             _scientist.FillRescueEnema();
+            _taskManager.RefreshPresentation();
         }
         else
         {
-            foreach (GameObject antidoteFlusk in _scientist.PicableAntidoteFlasks)
-            {
-                Destroy(antidoteFlusk);
-                _scientist.AntidoteAmount++;
-            }
+            GameObject antidoteFluskToDestroy = _scientist.PicableAntidoteFlasks[0];
+            _scientist.PicableAntidoteFlasks.Remove(antidoteFluskToDestroy);
+            Destroy(antidoteFluskToDestroy);
+            _scientist.AntidoteAmount++;
         }
+        _scientistAntidoteAmountText.text = _scientist.AntidoteAmount.ToString();
     }
 
     public void InteractWithButton()
@@ -111,7 +119,7 @@ public class ControlSystem : MonoBehaviour
 
     public void ChangePlayableBody()
     {
-        if (_playableScientists.Count > 0)
+        if (_playableScientists.Count > 1)
         {
             MovingBody.tag = "Untagged";
             if (_numberOfControledBody + 1 < _playableScientists.Count)
@@ -122,10 +130,13 @@ public class ControlSystem : MonoBehaviour
             {
                 _numberOfControledBody = 0;
             }
-
+            _scientist.ScientistMiniMapPointer.SetActive(false);
             _scientist = _playableScientists[_numberOfControledBody];
+            _scientist.ScientistMiniMapPointer.SetActive(true);
+
             _movingBody = _playableScientists[_numberOfControledBody].transform;
             _movingBody.tag = "ControlledScientist";
+            _scientistAntidoteAmountText.text = _scientist.AntidoteAmount.ToString();
         }
     }
 
@@ -140,19 +151,5 @@ public class ControlSystem : MonoBehaviour
 
         TaskManager.AliveScientistsAmount = _playableScientists.Count;
         _taskManager.RefreshPresentation();
-    }
-
-    public void RegistrateScientists()
-    {
-        GameObject[] scientists = GameObject.FindGameObjectsWithTag("ControlledScientist");
-        _playableScientists.Clear();
-        foreach (GameObject gm in scientists)
-        {
-            _playableScientists.Add(gm.GetComponent<Scientist>());
-        }
-        foreach (Scientist scientist in _playableScientists)
-        {
-            scientist.ScientistInfected.AddListener(MakeScientistUnavailable);
-        }
     }
 }

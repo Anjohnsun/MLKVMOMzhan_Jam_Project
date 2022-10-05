@@ -10,10 +10,10 @@ public class Scientist : MonoBehaviour
     [SerializeField] private int _antidoteAmount;
 
     [SerializeField] private float _scientistInfection;
-    [SerializeField] private bool _isInfected;  //Возможно не пригодится
 
     [SerializeField] private List<GameObject> _pickableAntidoteFlasks;
     [SerializeField] private SpriteRenderer _scientistSpriteRenderer;
+    [SerializeField] private GameObject _scientistMiniMapPointer;
 
     [SerializeField] private RescueEnema _rescueEnema;
 
@@ -29,12 +29,17 @@ public class Scientist : MonoBehaviour
     public float ScientistInfection { get => _scientistInfection; set => _scientistInfection = value; }
     public RescueEnema RescueEnema { get => _rescueEnema; set => _rescueEnema = value; }
     public Button AccessableButton { get => _accessableButton; set => _accessableButton = value; }
+    public GameObject ScientistMiniMapPointer { get => _scientistMiniMapPointer; set => _scientistMiniMapPointer = value; }
 
     public void InfectScientist()
     {
-        _isInfected = true;
-        _canMove = false;
         ScientistInfected.Invoke(this);
+        if (!_canMove && _accessableButton != null)
+        {
+            _accessableButton.ButtonUnpressed.Invoke();
+            _accessableButton = null;
+        }
+        _canMove = false;
         //Описать последствия заражения
     }
 

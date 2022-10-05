@@ -7,13 +7,13 @@ public class InputSystem : MonoBehaviour
     [SerializeField] private ControlSystem _controlSystem;
     void Update()
     {
-        if (Input.GetAxis("Horizontal") > 0.1  || Input.GetAxis("Horizontal") < -0.1) 
+        if (Input.GetAxis("Horizontal") > 0.1 || Input.GetAxis("Horizontal") < -0.1)
         {
-            _controlSystem.MoveHorizontally(Input.GetAxis("Horizontal"));
+            _controlSystem.MoveHorizontally(Input.GetAxis("Horizontal") * Time.deltaTime);
         }
         if (Input.GetAxis("Vertical") > 0.1 || Input.GetAxis("Vertical") < -0.1)
         {
-            _controlSystem.MoveVertically(Input.GetAxis("Vertical"));
+            _controlSystem.MoveVertically(Input.GetAxis("Vertical") * Time.deltaTime);
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {

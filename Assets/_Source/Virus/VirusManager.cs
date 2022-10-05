@@ -16,7 +16,11 @@ public class VirusManager : MonoBehaviour
 
     public void CreateVirusSites()
     {
-        CreateNewRandomVirusSite(_virusAreas[0], 10);
+        Debug.Log("Create Virus!");
+        for (int i = 0; i < _virusAreas.Count; i++)
+        {
+            CreateNewRandomVirusSite(_virusAreas[i], 4);
+        }
         StartCoroutine(EnlargeVirusSites());
     }
 
@@ -34,7 +38,7 @@ public class VirusManager : MonoBehaviour
 
     private IEnumerator EnlargeVirusSites()
     {
-        yield return new WaitForSeconds(10); 
+        yield return new WaitForSeconds(10);
         Debug.Log(_virusSites[0].transform.localScale.x);
         _actualVirusSiteScale += _inlargeSpeed;
         foreach (VirusSite virusSite in _virusSites)

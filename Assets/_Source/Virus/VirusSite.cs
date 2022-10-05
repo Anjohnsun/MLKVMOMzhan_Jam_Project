@@ -9,6 +9,11 @@ public class VirusSite : MonoBehaviour
     [SerializeField] private List<Scientist> _scientistsInVirusArea;
     private Scientist _movingScientist;
 
+    private void Start()
+    {
+        StartCoroutine(RotateVirusSite());
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.TryGetComponent(out _movingScientist);
@@ -29,5 +34,12 @@ public class VirusSite : MonoBehaviour
             if (scientist.ScientistInfection >= 1)
                 scientist.InfectScientist();
         }
+    }
+
+    private IEnumerator RotateVirusSite()
+    {
+        transform.Rotate(new Vector3(0, 0, 15));
+        yield return new WaitForSeconds(0.1f);
+        yield return StartCoroutine(RotateVirusSite());
     }
 }

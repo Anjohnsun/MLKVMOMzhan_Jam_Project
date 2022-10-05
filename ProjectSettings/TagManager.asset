@@ -6,6 +6,10 @@ TagManager:
   tags:
   - mapCell
   - ControlledScientist
+  - antidote
+  - floorW
+  - floorB
+  - button
   layers:
   - Default
   - TransparentFX
@@ -13,7 +17,7 @@ TagManager:
   - Obstacle
   - Water
   - UI
-  - 
+  - Important
   - 
   - 
   - 
