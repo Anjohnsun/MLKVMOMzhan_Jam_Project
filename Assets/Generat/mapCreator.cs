@@ -15,6 +15,9 @@ public class mapCreator : MonoBehaviour
     public int ScientistMax;
 
     [SerializeField] ControlSystem _controlSystem;
+    [SerializeField] ButtonManager _buttonManager;
+    [SerializeField] TaskManager _taskManager;
+    [SerializeField] VirusManager _virusManager;
 
     private void Start()
     {
@@ -90,6 +93,9 @@ public class mapCreator : MonoBehaviour
 
     IEnumerator SpawnObjects()
     {
+        List<Button> generatedButtons = new List<Button>();
+        List<Scientist> generatedScientists = new List<Scientist>();
+
         yield return new WaitForEndOfFrame();
 
         List<GameObject> floorsW = GameObject.FindGameObjectsWithTag("floorW").ToList();
@@ -99,7 +105,8 @@ public class mapCreator : MonoBehaviour
         for (int i = 0; i < ButtonMax; i++)
         {
             selectedNum = Random.Range(0, floorsB.Count - 1);
-            Instantiate(Prefabs[0], floorsB[selectedNum].transform.position, new Quaternion()); floorsB.RemoveAt(selectedNum);
+            generatedButtons.Add(Instantiate(Prefabs[0], floorsB[selectedNum].transform.position, new Quaternion()).GetComponent<Button>());
+            floorsB.RemoveAt(selectedNum);
         }
         for (int i = 0; i < AntidoteMax; i++)
         {
@@ -109,16 +116,13 @@ public class mapCreator : MonoBehaviour
         for (int i = 0; i < ScientistMax; i++)
         {
             selectedNum = Random.Range(0, floorsW.Count - 1);
-            Instantiate(Prefabs[2], floorsW[selectedNum].transform.position, new Quaternion()); floorsW.RemoveAt(selectedNum);
+            generatedScientists.Add(Instantiate(Prefabs[2], floorsW[selectedNum].transform.position, new Quaternion()).GetComponent<Scientist>());
+            floorsW.RemoveAt(selectedNum);
         }
 
-<<<<<<< HEAD
-        Debug.Log("Antidote - " + (GameObject.FindGameObjectsWithTag("antidote").Length + 1));
-        Debug.Log("Button - " + (GameObject.FindGameObjectsWithTag("button").Length + 1));
-        Debug.Log("ControlledScientist - " + (GameObject.FindGameObjectsWithTag("ControlledScientist").Length + 1));
-
-=======
->>>>>>> 70169f8ce011db1d49bf4ae56c5f56a663aa3969
-        _controlSystem.RegistrateScientists();
+        _controlSystem.RegistrateScientists(generatedScientists);
+        _buttonManager.RegistrateButtons(generatedButtons);
+        _taskManager.RefreshPresentation();
+        _virusManager.CreateVirusSites();
     }
 }

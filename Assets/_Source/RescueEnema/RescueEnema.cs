@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RescueEnema : MonoBehaviour
 {
     [SerializeField] private GameObject _textForFilling;
+    [SerializeField] private Slider _fullnesSlider;
 
     [SerializeField] private float _fullness;
     [SerializeField] private float _antidoteFlaskValue;
@@ -39,5 +41,15 @@ public class RescueEnema : MonoBehaviour
     {
         _fullness += _antidoteFlaskValue * numberOfAnidoteFlasks;
         TaskManager.ResqueEnemaFullness = _fullness;
+        StartCoroutine(ChangeFullnessView());
+    }
+
+    private IEnumerator ChangeFullnessView()
+    {
+        while (_fullnesSlider.value < Fullness)
+        {
+            yield return new WaitForSeconds(0.1f);
+            _fullnesSlider.value += 0.25f * _antidoteFlaskValue;
+        }
     }
 }

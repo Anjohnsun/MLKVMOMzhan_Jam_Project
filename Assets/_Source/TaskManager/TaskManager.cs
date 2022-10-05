@@ -23,8 +23,8 @@ public class TaskManager : MonoBehaviour
     public void RefreshPresentation()
     {
         _aliveScientistsText.text = "Живы ещё " + _aliveScientistsAmount;
-        _pressedButtonsText.text = "Нажато " + _pressedButtonAmount + "/" + _requiredPressedButtonAmount;
-        _enemaFullnessText.text = "Машина заполнена на " + Mathf.RoundToInt(_resqueEnemaFullness);
+        _pressedButtonsText.text = "Нажато кнопок " + _pressedButtonAmount + "/" + _requiredPressedButtonAmount;
+        _enemaFullnessText.text = "Машина заполнена на " + Mathf.RoundToInt(_resqueEnemaFullness*100) + "%";
 
         if (_resqueEnemaFullness >= 1 && _requiredPressedButtonAmount == _pressedButtonAmount)
         {

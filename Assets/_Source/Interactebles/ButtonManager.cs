@@ -6,8 +6,6 @@ public class ButtonManager : MonoBehaviour
 {
     [SerializeField] private List<Button> _buttons;
 
-    [SerializeField] private GameObject _buttonPrefab;
-
     [SerializeField] private int _pressedButonNumber;
     [SerializeField] private int _requiredPressedButtonNumber;
 
@@ -16,13 +14,18 @@ public class ButtonManager : MonoBehaviour
     public int PressedButonNumber { get => _pressedButonNumber; set => _pressedButonNumber = value; }
     public int RequiredPressedButtonNumber { get => _requiredPressedButtonNumber; set => _requiredPressedButtonNumber = value; }
 
-    private void Start()
+    public void RegistrateButtons(List<Button> generatedButtons)
     {
-        foreach(Button button in _buttons)
+        foreach (Button button in generatedButtons)
+        {
+            _buttons.Add(button);
+        }
+        foreach (Button button in _buttons)
         {
             button.ButtonPressed.AddListener(ButtonPressed);
             button.ButtonUnpressed.AddListener(ButtonUnpressed);
         }
+        TaskManager.RequiredPressedButtonAmount = _requiredPressedButtonNumber;
     }
 
     private void ButtonPressed()
@@ -30,7 +33,7 @@ public class ButtonManager : MonoBehaviour
         _pressedButonNumber++;
         TaskManager.PressedButtonAmount++;
         _taskManager.RefreshPresentation();
-        
+
     }
     private void ButtonUnpressed()
     {
