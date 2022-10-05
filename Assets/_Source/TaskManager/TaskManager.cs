@@ -24,9 +24,9 @@ public class TaskManager : MonoBehaviour
 
     public void RefreshPresentation()
     {
-        _aliveScientistsText.text = "Живы ещё " + _aliveScientistsAmount;
-        _pressedButtonsText.text = "Нажато кнопок " + _pressedButtonAmount + "/" + _requiredPressedButtonAmount;
-        _enemaFullnessText.text = "Машина заполнена на " + Mathf.RoundToInt(_resqueEnemaFullness*100) + "%";
+        _aliveScientistsText.text = "Still alive: " + _aliveScientistsAmount;
+        _pressedButtonsText.text = "Pressed buttons: " + _pressedButtonAmount + "/" + _requiredPressedButtonAmount;
+        _enemaFullnessText.text = "The machine is " + Mathf.RoundToInt(_resqueEnemaFullness*100) + "% full";
 
         if (_resqueEnemaFullness >= 1 && _requiredPressedButtonAmount == _pressedButtonAmount)
         {
