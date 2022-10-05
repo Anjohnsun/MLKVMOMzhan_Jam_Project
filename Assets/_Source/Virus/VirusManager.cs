@@ -14,6 +14,8 @@ public class VirusManager : MonoBehaviour
 
     [SerializeField] private TaskManager _taskManager;
 
+    [SerializeField] private TMPro.TextMeshProUGUI _secTimer;
+
     public void CreateVirusSites()
     {
         Debug.Log("Create Virus!");
@@ -38,7 +40,14 @@ public class VirusManager : MonoBehaviour
 
     private IEnumerator EnlargeVirusSites()
     {
-        yield return new WaitForSeconds(10);
+        _secTimer.color = Color.white;
+        for (int i = 10; i > 0; i--)
+        {
+            _secTimer.text = i.ToString();
+            if (i < 4) _secTimer.color = Color.red;
+            yield return new WaitForSeconds(1);
+        }
+
         Debug.Log(_virusSites[0].transform.localScale.x);
         _actualVirusSiteScale += _inlargeSpeed;
         foreach (VirusSite virusSite in _virusSites)

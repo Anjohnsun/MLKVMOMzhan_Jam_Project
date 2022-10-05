@@ -72,6 +72,7 @@ public class mapCreator : MonoBehaviour
             {
                 Instantiate(Borders[5], gameObject.transform.position + posB1, gameObject.transform.rotation, gameObject.transform);
                 Instantiate(Borders[5], gameObject.transform.position + posB2, gameObject.transform.rotation, gameObject.transform);
+                continue;
             }
             Instantiate(Borders[0], gameObject.transform.position + posB1, gameObject.transform.rotation, gameObject.transform);
             Instantiate(Borders[0], gameObject.transform.position + posB2, gameObject.transform.rotation, gameObject.transform);
