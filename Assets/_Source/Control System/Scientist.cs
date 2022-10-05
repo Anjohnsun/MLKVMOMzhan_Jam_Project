@@ -40,6 +40,7 @@ public class Scientist : MonoBehaviour
             _accessableButton = null;
         }
         _canMove = false;
+        GetComponent<SpriteRenderer>().color = Color.green;
         //Описать последствия заражения
     }
 

@@ -14,6 +14,8 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _pressedButtonsText;
     [SerializeField] private TextMeshProUGUI _enemaFullnessText;
     [SerializeField] private GameObject _winPanel;
+    [SerializeField] private GameObject _losePanel;
+    [SerializeField] private GameObject _miniMapCamera;
 
     public static int AliveScientistsAmount { get => _aliveScientistsAmount; set => _aliveScientistsAmount = value; }
     public static int PressedButtonAmount { get => _pressedButtonAmount; set => _pressedButtonAmount = value; }
@@ -29,6 +31,13 @@ public class TaskManager : MonoBehaviour
         if (_resqueEnemaFullness >= 1 && _requiredPressedButtonAmount == _pressedButtonAmount)
         {
             _winPanel.SetActive(true);
+            _miniMapCamera.SetActive(false);
+            _requiredPressedButtonAmount = 0;
+        }
+        if (_aliveScientistsAmount < _requiredPressedButtonAmount)
+        {
+            _losePanel.SetActive(true);
+            _miniMapCamera.SetActive(false);
         }
     }
 }
